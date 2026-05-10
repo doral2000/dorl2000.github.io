@@ -149,6 +149,11 @@
         input[type=range] {
             accent-color: var(--theme-color);
         }
+
+        /* إضافة ظلال قوية للنصوص لتبرز فوق الصور الفاتحة */
+        .strong-text-shadow {
+            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.9), 0px 1px 3px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1);
+        }
     </style>
 </head>
 <body>
@@ -162,21 +167,21 @@
             <div id="gradient-overlay" class="gradient-overlay" style="display: none;"></div>
 
             <div class="logo-area">
-                <div class="bg-black/80 backdrop-blur-md px-3 py-1 rounded border border-gray-600">
+                <div class="bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded border border-gray-400/50">
                     <div class="flex flex-col text-right">
-                        <h1 class="text-lg font-black text-white leading-tight">إذاعة دارك</h1>
-                        <p class="text-[9px] text-gray-300 font-bold uppercase tracking-widest">94.3 FM</p>
+                        <h1 class="text-sm font-black text-white leading-tight strong-text-shadow">إذاعة دارك</h1>
+                        <p class="text-[7px] text-gray-200 font-bold uppercase tracking-widest strong-text-shadow">94.3 FM</p>
                     </div>
                 </div>
             </div>
 
             <div id="content-container" class="content-area content-text-mode">
-                <div id="urgent-badge" class="urgent-tag mb-2">عاجل</div>
-                <div id="display-text" class="font-bold leading-snug text-white mb-3" style="font-size: 22px;">
+                <div id="urgent-badge" class="urgent-tag mb-2 shadow-md">عاجل</div>
+                <div id="display-text" class="font-bold leading-snug text-white mb-3 strong-text-shadow" style="font-size: 22px;">
                     اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي
                 </div>
-                <div id="theme-line" class="h-1 w-16 mb-2" style="background-color: var(--theme-color);"></div>
-                <div id="display-date" class="text-gray-300 text-[10px] font-bold"></div>
+                <div id="theme-line" class="h-1 w-16 mb-2" style="background-color: var(--theme-color); box-shadow: 0px 1px 3px rgba(0,0,0,0.8);"></div>
+                <div id="display-date" class="text-gray-200 text-[10px] font-bold strong-text-shadow"></div>
             </div>
 
             <div class="social-footer">
@@ -244,7 +249,7 @@
                             <label class="text-[10px] text-gray-400">حجم الخط</label>
                             <span id="font-val" class="text-[10px]">22px</span>
                         </div>
-                        <input type="range" id="font-size-slider" min="14" max="40" value="22" class="w-full">
+                        <input type="range" id="font-size-slider" min="8" max="40" value="22" class="w-full">
                     </div>
                 </div>
             </div>
