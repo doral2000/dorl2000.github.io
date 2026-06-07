@@ -15,31 +15,34 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #111827;
+            background-color: #0f172a;
             color: white;
-            padding-bottom: 50px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        /* حاوية المعاينة في الأعلى */
         .preview-header {
             width: 100%;
-            background: #0f172a;
-            padding: 20px 10px;
-            border-bottom: 2px solid #1e293b;
-            margin-bottom: 20px;
+            background: #1e293b;
+            padding: 15px 10px;
+            border-bottom: 1px solid #334155;
             display: flex;
             justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         #news-canvas {
             width: 100%;
-            max-width: 400px;
+            max-width: 320px;
             aspect-ratio: 1 / 1;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, #1f2937, #111827);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 12px;
         }
 
         #img-container {
@@ -59,12 +62,10 @@
             height: 100%;
             object-fit: cover;
             transform-origin: center;
-            transition: transform 0.1s ease-out, border 0.3s ease;
         }
 
         .img-with-border {
-            border: 6px solid var(--theme-color) !important;
-            border-radius: 4px;
+            border: 5px solid var(--theme-color) !important;
         }
 
         .gradient-overlay {
@@ -73,51 +74,45 @@
             left: 0;
             right: 0;
             height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
             z-index: 1;
         }
 
         .urgent-tag {
             background: var(--theme-color);
             color: white;
-            padding: 4px 16px;
+            padding: 2px 12px;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 12px;
             display: inline-block;
             clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
-            transition: background-color 0.3s ease;
         }
 
         .content-area {
             position: absolute;
-            left: 15px;
-            right: 15px;
+            left: 12px;
+            right: 12px;
             z-index: 2;
-            transition: all 0.3s ease;
         }
 
         .content-image-mode {
-            bottom: 45px;
-            top: auto;
-            transform: none;
-            background: transparent;
+            bottom: 40px;
         }
 
         .content-text-mode {
             top: 50%;
-            bottom: auto;
             transform: translateY(-50%);
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(8px);
-            padding: 20px;
-            border-radius: 12px;
-            border-right: 5px solid var(--theme-color);
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 4px solid var(--theme-color);
         }
 
         .logo-area {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             z-index: 2;
         }
 
@@ -127,38 +122,116 @@
             left: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.85);
-            border-top: 2px solid var(--theme-color);
-            padding: 5px 12px;
+            border-top: 1px solid var(--theme-color);
+            padding: 4px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 10;
         }
 
-        .social-icons svg {
-            width: 12px;
-            height: 12px;
-            fill: white;
-            margin-left: 6px;
+        .controls-container {
+            padding: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding-bottom: 30px;
         }
 
-        .control-btn {
-            transition: all 0.2s;
+        .control-group {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #334155;
         }
-        
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 8px;
+        }
+
+        .theme-btn {
+            height: 40px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+        }
+
+        .theme-btn:active {
+            transform: scale(0.95);
+        }
+
         input[type=range] {
-            accent-color: var(--theme-color);
+            width: 100%;
+            height: 6px;
+            background: #334155;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 15px 0;
         }
 
-        /* إضافة ظلال قوية للنصوص لتبرز فوق الصور الفاتحة */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--theme-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            resize: none;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 15px;
+            margin-top: 10px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ظلال النصوص */
         .strong-text-shadow {
-            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.9), 0px 1px 3px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1);
+            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.9), 0px 1px 4px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1);
         }
     </style>
 </head>
 <body>
 
-    <!-- قسم المعاينة في الأعلى -->
     <div class="preview-header">
         <div id="news-canvas">
             <div id="img-container">
@@ -176,89 +249,92 @@
             </div>
 
             <div id="content-container" class="content-area content-text-mode">
-                <div id="urgent-badge" class="urgent-tag mb-2 shadow-md">عاجل</div>
-                <div id="display-text" class="font-bold leading-snug text-white mb-3 strong-text-shadow" style="font-size: 22px;">
+                <div id="urgent-badge" class="urgent-tag mb-1 shadow-md">عاجل</div>
+                <div id="display-text" class="font-bold leading-tight text-white mb-2 strong-text-shadow" style="font-size: 18px;">
                     اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي
                 </div>
-                <div id="theme-line" class="h-1 w-16 mb-2" style="background-color: var(--theme-color); box-shadow: 0px 1px 3px rgba(0,0,0,0.8);"></div>
-                <div id="display-date" class="text-gray-200 text-[10px] font-bold strong-text-shadow"></div>
+                <div id="theme-line" class="h-1 w-12 mb-1" style="background-color: var(--theme-color); box-shadow: 0px 1px 3px rgba(0,0,0,0.8);"></div>
+                <div id="display-date" class="text-gray-200 text-[8px] font-bold strong-text-shadow"></div>
             </div>
 
             <div class="social-footer">
-                <span class="text-[9px] font-bold text-white">تابع إذاعة دارك</span>
-                <div class="social-icons flex items-center">
-                    <svg viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
-                    <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-                    <svg viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
-                    <svg viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm114.9 168.6c-4.2 24.5-22.9 122.9-32.5 170.2-4.1 20.4-11.6 27.2-18.8 27.9-15.5 1.4-27.2-10.2-42.1-20-23.5-15.3-36.8-24.7-59.5-39.7-26-17.1-9.2-26.6 5.8-42.1 3.9-4.1 72.1-66.2 73.4-71.8 1.5-6.7-1.1-9.4-4.5-9.4-4.1 0-25.5 14.1-72.1 45.6-68.3 46.1-98.3 58-132.9 57.1-23.4-.6-68.7-13.3-102.3-24.2-40.4-13.1-72.5-20.1-69.7-42.5 1.5-11.9 17.5-24.2 48-37.1 187.9-81.8 313.1-133.7 375.6-159.5 17.9-7.4 35.3-12.7 49-13.1 13.1-.4 27.9 3 36.3 11.4 6 6 8.3 14.1 9.4 22 1.2 10.1.7 21.8-.7 34.6z"/></svg>
-                    <svg viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg>
+                <span class="text-[8px] font-bold text-white strong-text-shadow">تابع إذاعة دارك</span>
+                <div class="flex items-center space-x-reverse space-x-2">
+                    <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- لوحة التحكم -->
-    <div class="max-w-4xl mx-auto px-4 pb-10">
-        <div class="bg-gray-800 p-6 rounded-2xl shadow-xl space-y-6 border border-gray-700">
-            
-            <!-- القوالب -->
-            <div class="space-y-3">
-                <label class="block text-gray-400 text-xs font-bold uppercase tracking-wider">اختيار القالب</label>
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                    <button onclick="updateTheme('news')" class="control-btn bg-red-600 p-2 rounded text-xs font-bold border border-transparent hover:border-white">عاجل</button>
-                    <button onclick="updateTheme('sports')" class="control-btn bg-green-600 p-2 rounded text-xs font-bold border border-transparent hover:border-white">رياضة</button>
-                    <button onclick="updateTheme('appeals')" class="control-btn bg-orange-600 p-2 rounded text-xs font-bold border border-transparent hover:border-white">مناشدة</button>
-                    <button onclick="updateTheme('entertainment')" class="control-btn bg-purple-600 p-2 rounded text-xs font-bold border border-transparent hover:border-white">ترفيه</button>
-                    <button onclick="updateTheme('tech')" class="control-btn bg-cyan-600 p-2 rounded text-xs font-bold border border-transparent hover:border-white">تكنولوجيا</button>
-                </div>
+    <div class="controls-container">
+        <!-- قسم القوالب -->
+        <div class="control-group">
+            <span class="section-title">نوع الخبر</span>
+            <div class="theme-grid">
+                <button onclick="updateTheme('news')" class="theme-btn bg-red-600">عاجل</button>
+                <button onclick="updateTheme('sports')" class="theme-btn bg-green-600">رياضة</button>
+                <button onclick="updateTheme('appeals')" class="theme-btn bg-orange-600">مناشدة</button>
+                <button onclick="updateTheme('entertainment')" class="theme-btn bg-purple-600">ترفيه</button>
+                <button onclick="updateTheme('tech')" class="theme-btn bg-cyan-600">تقنية</button>
             </div>
-
-            <!-- التحكم بالصورة -->
-            <div class="bg-gray-900/50 p-4 rounded-xl space-y-4">
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <div class="flex-1">
-                        <label class="block text-gray-400 text-[10px] mb-1 font-bold">تحميل الصورة</label>
-                        <input type="file" id="image-input" accept="image/*" class="w-full text-xs text-gray-400 file:bg-gray-700 file:text-white file:border-0 file:px-3 file:py-1 file:rounded file:cursor-pointer">
-                    </div>
-                    <div class="flex gap-2">
-                        <button id="toggle-border-btn" class="bg-gray-700 px-3 py-1 rounded text-[10px] font-bold border border-gray-600">إضافة إطار</button>
-                        <button id="remove-image-btn" class="bg-red-900/40 text-red-300 px-3 py-1 rounded text-[10px] font-bold border border-red-900/50">حذف</button>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label class="text-[10px] text-gray-400">حجم الصورة</label>
-                        <span id="scale-val" class="text-[10px]">100%</span>
-                    </div>
-                    <input type="range" id="img-scale-slider" min="50" max="150" value="100" class="w-full">
-                </div>
-            </div>
-
-            <!-- التحكم بالنص -->
-            <div class="space-y-4">
-                <div class="flex justify-between items-center">
-                    <label class="block text-gray-400 text-xs font-bold uppercase tracking-wider">نص الخبر</label>
-                    <button id="toggle-urgent-btn" class="text-[10px] bg-gray-700 px-2 py-1 rounded border border-gray-600">إخفاء "عاجل"</button>
-                </div>
-                <textarea id="text-input" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-sm focus:border-red-500 outline-none" placeholder="اكتب الخبر هنا..."></textarea>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <label class="text-[10px] text-gray-400">حجم الخط</label>
-                            <span id="font-val" class="text-[10px]">22px</span>
-                        </div>
-                        <input type="range" id="font-size-slider" min="8" max="40" value="22" class="w-full">
-                    </div>
-                </div>
-            </div>
-
-            <!-- زر الحفظ -->
-            <button id="download-btn" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-4 rounded-xl shadow-lg border-b-4 border-green-800 transition-all active:border-0 active:translate-y-1">
-                حفظ في الاستوديو
-            </button>
         </div>
+
+        <!-- قسم النص -->
+        <div class="control-group">
+            <div class="flex justify-between items-center mb-2">
+                <span class="section-title m-0">محتوى الخبر</span>
+                <div class="flex gap-2">
+                    <button id="paste-btn" class="text-[10px] text-green-400 font-bold bg-gray-800 px-2 py-1 rounded">لصق سريع</button>
+                    <button id="toggle-urgent-btn" class="text-[10px] text-blue-400 font-bold bg-gray-800 px-2 py-1 rounded">تبديل العلامة</button>
+                </div>
+            </div>
+            <textarea id="text-input" rows="2" placeholder="أدخل نص الخبر هنا..."></textarea>
+            
+            <div class="mt-4">
+                <div class="flex justify-between text-[10px] font-bold text-gray-400">
+                    <span>حجم الخط</span>
+                    <span id="font-val">18px</span>
+                </div>
+                <input type="range" id="font-size-slider" min="8" max="40" value="18">
+            </div>
+        </div>
+
+        <!-- قسم الصورة -->
+        <div class="control-group">
+            <span class="section-title">إعدادات الصورة</span>
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <label class="bg-gray-700 p-2 rounded-xl flex items-center justify-center cursor-pointer active:bg-gray-600 text-center">
+                    <span class="text-[10px] font-bold">اختر صورة</span>
+                    <input type="file" id="image-input" accept="image/*" class="hidden">
+                </label>
+                <button id="toggle-fit-btn" class="bg-gray-700 p-2 rounded-xl text-[10px] font-bold active:bg-gray-600">احتواء الصورة</button>
+                <button id="toggle-border-btn" class="bg-gray-700 p-2 rounded-xl text-[10px] font-bold active:bg-gray-600">إضافة إطار</button>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button id="remove-image-btn" class="text-[10px] text-red-400 font-bold bg-red-900/30 px-2 py-1 rounded">حذف</button>
+                <div class="flex-1">
+                    <input type="range" id="img-scale-slider" min="50" max="150" value="100">
+                </div>
+            </div>
+        </div>
+
+        <!-- أزرار الإجراءات -->
+        <button id="download-btn" class="action-btn bg-green-600 text-white shadow-lg border-b-4 border-green-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            حفظ في الاستوديو
+        </button>
+
+        <button id="share-btn" class="action-btn bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 text-white shadow-lg border-b-4 border-pink-700 mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+            مشاركة (فيسبوك / انستغرام)
+        </button>
     </div>
 
     <script>
@@ -271,7 +347,6 @@
         const container = document.getElementById('content-container');
         const gradient = document.getElementById('gradient-overlay');
         const themeLine = document.getElementById('theme-line');
-        const socialFooter = document.querySelector('.social-footer');
 
         const themes = {
             news: { color: '#e11d48', label: 'عاجل' },
@@ -281,36 +356,29 @@
             tech: { color: '#06b6d4', label: 'تكنولوجيا' }
         };
 
-        // دالة تحديث القالب
         window.updateTheme = function(t) {
             const data = themes[t];
             document.documentElement.style.setProperty('--theme-color', data.color);
             urgentBadge.innerText = data.label;
             urgentBadge.style.backgroundColor = data.color;
             themeLine.style.backgroundColor = data.color;
-            socialFooter.style.borderColor = data.color;
         };
 
-        // تحديث النص
         textInput.addEventListener('input', (e) => {
             displayText.innerText = e.target.value || 'اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي';
         });
 
-        // حجم الخط
         document.getElementById('font-size-slider').addEventListener('input', (e) => {
             displayText.style.fontSize = e.target.value + 'px';
             document.getElementById('font-val').innerText = e.target.value + 'px';
         });
 
-        // إظهار/إخفاء عاجل
         let badgeVisible = true;
-        document.getElementById('toggle-urgent-btn').addEventListener('click', (e) => {
+        document.getElementById('toggle-urgent-btn').addEventListener('click', () => {
             badgeVisible = !badgeVisible;
             urgentBadge.style.display = badgeVisible ? 'inline-block' : 'none';
-            e.target.innerText = badgeVisible ? 'إخفاء "عاجل"' : 'إظهار "عاجل"';
         });
 
-        // معالجة الصور
         imageInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -335,48 +403,101 @@
         document.getElementById('img-scale-slider').addEventListener('input', (e) => {
             const s = e.target.value / 100;
             bgPreview.style.transform = `scale(${s})`;
-            document.getElementById('scale-val').innerText = e.target.value + '%';
         });
 
         let borderActive = false;
         document.getElementById('toggle-border-btn').addEventListener('click', (e) => {
             borderActive = !borderActive;
-            if (borderActive) {
-                bgPreview.classList.add('img-with-border');
-                e.target.innerText = 'إزالة الإطار';
-                e.target.classList.add('bg-blue-600');
-            } else {
-                bgPreview.classList.remove('img-with-border');
-                e.target.innerText = 'إضافة إطار';
-                e.target.classList.remove('bg-blue-600');
+            bgPreview.classList.toggle('img-with-border', borderActive);
+            e.target.innerText = borderActive ? 'إزالة الإطار' : 'إضافة إطار';
+        });
+
+        // خاصية احتواء الصورة (لمنع القص)
+        let isContain = false;
+        document.getElementById('toggle-fit-btn').addEventListener('click', (e) => {
+            isContain = !isContain;
+            bgPreview.style.objectFit = isContain ? 'contain' : 'cover';
+            e.target.innerText = isContain ? 'ملء الصورة' : 'احتواء الصورة';
+            e.target.classList.toggle('bg-blue-600', isContain);
+        });
+
+        // خاصية اللصق السريع
+        document.getElementById('paste-btn').addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                if(text) {
+                    textInput.value = text;
+                    displayText.innerText = text;
+                }
+            } catch (err) {
+                // تظهر هذه الرسالة إذا كان المتصفح أو التطبيق يمنع الوصول التلقائي للحافظة لدواعي أمنية
+                alert('عذراً، التطبيق يحتاج صلاحية أو يمنع الوصول التلقائي للحافظة. يرجى النقر مطولاً داخل المربع واختيار "لصق".');
             }
         });
 
-        // التاريخ
         const d = new Date();
         document.getElementById('display-date').innerText = d.toLocaleDateString('ar-EG', {day:'numeric', month:'long', year:'numeric'});
 
-        // الحفظ
-        document.getElementById('download-btn').addEventListener('click', async () => {
-            const btn = document.getElementById('download-btn');
-            btn.innerText = 'جاري التحضير...';
+        // دالة التقاط الصورة المشتركة
+        async function captureCanvas() {
+            await document.fonts.ready;
+            const canvasOut = await html2canvas(canvas, { scale: 3, useCORS: true });
+            return canvasOut.toDataURL('image/png');
+        }
+
+        // زر الحفظ
+        document.getElementById('download-btn').addEventListener('click', async (e) => {
+            const btn = e.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = 'جاري الحفظ...';
             try {
-                await document.fonts.ready;
-                const canvasOut = await html2canvas(canvas, { scale: 3, useCORS: true });
-                const imgData = canvasOut.toDataURL('image/png');
-                
+                const imgData = await captureCanvas();
                 if (window.Android && window.Android.saveImage) {
                     window.Android.saveImage(imgData.split(',')[1]);
                 } else {
                     const link = document.createElement('a');
-                    link.download = 'DarkFM_News.png';
+                    link.download = `DarkFM_${Date.now()}.png`;
                     link.href = imgData;
                     link.click();
                 }
             } catch (err) {
-                alert('خطأ في الحفظ');
+                console.error(err);
             }
-            btn.innerText = 'حفظ في الاستوديو';
+            btn.innerHTML = originalHTML;
+        });
+
+        // زر المشاركة الجديد
+        document.getElementById('share-btn').addEventListener('click', async (e) => {
+            const btn = e.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = 'جاري التجهيز...';
+            try {
+                const imgData = await captureCanvas();
+                
+                // 1. الاتصال بتطبيق الأندرويد لفتح نافذة المشاركة
+                if (window.Android && window.Android.shareImage) {
+                    window.Android.shareImage(imgData.split(',')[1]);
+                } 
+                // 2. إذا كان يعمل في متصفح ويب يدعم المشاركة (Web Share API)
+                else {
+                    const res = await fetch(imgData);
+                    const blob = await res.blob();
+                    const file = new File([blob], 'DarkFM_News.png', { type: 'image/png' });
+                    
+                    if (navigator.share && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            title: 'خبر من إذاعة دارك',
+                            files: [file]
+                        });
+                    } else {
+                        alert('عذراً، ميزة المشاركة المباشرة تتطلب تطبيق الأندرويد.');
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+                alert('حدث خطأ أثناء محاولة المشاركة');
+            }
+            btn.innerHTML = originalHTML;
         });
     </script>
 </body>
