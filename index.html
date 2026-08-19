@@ -37,12 +37,13 @@
         #news-canvas {
             width: 100%;
             max-width: 320px;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1 / 1; /* القيمة الافتراضية */
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, #1f2937, #111827);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 12px;
+            transition: aspect-ratio 0.3s ease; /* حركة سلسة عند تغيير الأبعاد */
         }
 
         #img-container {
@@ -107,6 +108,15 @@
             padding: 15px;
             border-radius: 10px;
             border-right: 4px solid var(--theme-color);
+        }
+
+        /* كلاس الخلفية الشفافة للنص المضاف حديثاً */
+        .text-backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            border-right: 3px solid var(--theme-color);
         }
 
         .logo-area {
@@ -224,7 +234,6 @@
             transform: scale(0.98);
         }
 
-        /* ظلال النصوص */
         .strong-text-shadow {
             text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.9), 0px 1px 4px rgba(0, 0, 0, 1), 0px 0px 2px rgba(0, 0, 0, 1);
         }
@@ -250,27 +259,21 @@
 
             <div id="content-container" class="content-area content-text-mode">
                 <div id="urgent-badge" class="urgent-tag mb-1 shadow-md">عاجل</div>
-                <div id="display-text" class="font-bold leading-tight text-white mb-2 strong-text-shadow" style="font-size: 18px;">
+                <div id="display-text" class="font-bold leading-tight text-white mb-2 strong-text-shadow transition-all duration-300" style="font-size: 18px;">
                     اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي
                 </div>
-                <div id="theme-line" class="h-1 w-12 mb-1" style="background-color: var(--theme-color); box-shadow: 0px 1px 3px rgba(0,0,0,0.8);"></div>
+                <div id="theme-line" class="h-1 w-12 mb-1 transition-all duration-300" style="background-color: var(--theme-color); box-shadow: 0px 1px 3px rgba(0,0,0,0.8);"></div>
                 <div id="display-date" class="text-gray-200 text-[8px] font-bold strong-text-shadow"></div>
             </div>
 
             <div class="social-footer">
                 <span class="text-[8px] font-bold text-white strong-text-shadow">تابع إذاعة دارك</span>
                 <div class="flex items-center space-x-reverse space-x-2">
-                    <!-- Facebook -->
                     <svg class="fill-white w-2.5 h-2.5" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
-                    <!-- Instagram -->
                     <svg class="fill-white w-3 h-3" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-                    <!-- TikTok -->
                     <svg class="fill-white w-2.5 h-2.5" viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg>
-                    <!-- X / Twitter -->
                     <svg class="fill-white w-3 h-3" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
-                    <!-- Telegram -->
                     <svg class="fill-white w-3 h-3" viewBox="0 0 496 512"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm114.9 168.6c-4.2 24.5-22.9 122.9-32.5 170.2-4.1 20.4-11.6 27.2-18.8 27.9-15.5 1.4-27.2-10.2-42.1-20-23.5-15.3-36.8-24.7-59.5-39.7-26-17.1-9.2-26.6 5.8-42.1 3.9-4.1 72.1-66.2 73.4-71.8 1.5-6.7-1.1-9.4-4.5-9.4-4.1 0-25.5 14.1-72.1 45.6-68.3 46.1-98.3 58-132.9 57.1-23.4-.6-68.7-13.3-102.3-24.2-40.4-13.1-72.5-20.1-69.7-42.5 1.5-11.9 17.5-24.2 48-37.1 187.9-81.8 313.1-133.7 375.6-159.5 17.9-7.4 35.3-12.7 49-13.1 13.1-.4 27.9 3 36.3 11.4 6 6 8.3 14.1 9.4 22 1.2 10.1.7 21.8-.7 34.6z"/></svg>
-                    <!-- YouTube -->
                     <svg class="fill-white w-3 h-3" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
                 </div>
             </div>
@@ -278,6 +281,16 @@
     </div>
 
     <div class="controls-container">
+        
+        <!-- قسم الأبعاد المضاف حديثاً -->
+        <div class="control-group">
+            <span class="section-title">أبعاد الصورة</span>
+            <div class="flex gap-2">
+                <button onclick="setAspectRatio('1/1')" id="btn-ratio-1-1" class="flex-1 bg-blue-600 p-2 rounded-xl text-[12px] font-bold transition-colors">مربع (1:1)</button>
+                <button onclick="setAspectRatio('4/5')" id="btn-ratio-4-5" class="flex-1 bg-gray-700 p-2 rounded-xl text-[12px] font-bold transition-colors">طولي (4:5)</button>
+            </div>
+        </div>
+
         <!-- قسم القوالب -->
         <div class="control-group">
             <span class="section-title">نوع الخبر</span>
@@ -294,12 +307,14 @@
         <div class="control-group">
             <div class="flex justify-between items-center mb-2">
                 <span class="section-title m-0">محتوى الخبر</span>
-                <div class="flex gap-2">
-                    <button id="paste-btn" class="text-[10px] text-green-400 font-bold bg-gray-800 px-2 py-1 rounded">لصق سريع</button>
+                <div class="flex gap-2 flex-wrap justify-end">
+                    <!-- زر إضافة الخلفية للنص -->
+                    <button id="toggle-text-bg-btn" class="text-[10px] text-yellow-400 font-bold bg-gray-800 px-2 py-1 rounded border border-yellow-900/50">خلفية للنص</button>
                     <button id="toggle-urgent-btn" class="text-[10px] text-blue-400 font-bold bg-gray-800 px-2 py-1 rounded">تبديل العلامة</button>
+                    <button id="paste-btn" class="text-[10px] text-green-400 font-bold bg-gray-800 px-2 py-1 rounded">لصق سريع</button>
                 </div>
             </div>
-            <textarea id="text-input" rows="2" placeholder="أدخل نص الخبر هنا..."></textarea>
+            <textarea id="text-input" rows="3" placeholder="أدخل نص الخبر هنا..."></textarea>
             
             <div class="mt-4">
                 <div class="flex justify-between text-[10px] font-bold text-gray-400">
@@ -357,6 +372,18 @@
         const gradient = document.getElementById('gradient-overlay');
         const themeLine = document.getElementById('theme-line');
 
+        // دالة تغيير أبعاد الصورة (الميزة الجديدة)
+        window.setAspectRatio = function(ratio) {
+            canvas.style.aspectRatio = ratio;
+            if(ratio === '1/1') {
+                document.getElementById('btn-ratio-1-1').classList.replace('bg-gray-700', 'bg-blue-600');
+                document.getElementById('btn-ratio-4-5').classList.replace('bg-blue-600', 'bg-gray-700');
+            } else {
+                document.getElementById('btn-ratio-4-5').classList.replace('bg-gray-700', 'bg-blue-600');
+                document.getElementById('btn-ratio-1-1').classList.replace('bg-blue-600', 'bg-gray-700');
+            }
+        };
+
         const themes = {
             news: { color: '#e11d48', label: 'عاجل' },
             sports: { color: '#16a34a', label: 'رياضة' },
@@ -380,6 +407,23 @@
         document.getElementById('font-size-slider').addEventListener('input', (e) => {
             displayText.style.fontSize = e.target.value + 'px';
             document.getElementById('font-val').innerText = e.target.value + 'px';
+        });
+
+        // زر خلفية النص (الميزة الجديدة)
+        let textBgActive = false;
+        document.getElementById('toggle-text-bg-btn').addEventListener('click', (e) => {
+            textBgActive = !textBgActive;
+            if(textBgActive) {
+                displayText.classList.add('text-backdrop');
+                e.target.innerText = 'إزالة الخلفية للنص';
+                e.target.classList.replace('text-yellow-400', 'text-red-400');
+                e.target.classList.replace('border-yellow-900/50', 'border-red-900/50');
+            } else {
+                displayText.classList.remove('text-backdrop');
+                e.target.innerText = 'خلفية للنص';
+                e.target.classList.replace('text-red-400', 'text-yellow-400');
+                e.target.classList.replace('border-red-900/50', 'border-yellow-900/50');
+            }
         });
 
         let badgeVisible = true;
@@ -421,7 +465,6 @@
             e.target.innerText = borderActive ? 'إزالة الإطار' : 'إضافة إطار';
         });
 
-        // خاصية احتواء الصورة (لمنع القص)
         let isContain = false;
         document.getElementById('toggle-fit-btn').addEventListener('click', (e) => {
             isContain = !isContain;
@@ -430,7 +473,6 @@
             e.target.classList.toggle('bg-blue-600', isContain);
         });
 
-        // خاصية اللصق السريع
         document.getElementById('paste-btn').addEventListener('click', async () => {
             try {
                 const text = await navigator.clipboard.readText();
@@ -439,7 +481,6 @@
                     displayText.innerText = text;
                 }
             } catch (err) {
-                // تظهر هذه الرسالة إذا كان المتصفح أو التطبيق يمنع الوصول التلقائي للحافظة لدواعي أمنية
                 alert('عذراً، التطبيق يحتاج صلاحية أو يمنع الوصول التلقائي للحافظة. يرجى النقر مطولاً داخل المربع واختيار "لصق".');
             }
         });
@@ -447,14 +488,12 @@
         const d = new Date();
         document.getElementById('display-date').innerText = d.toLocaleDateString('ar-EG', {day:'numeric', month:'long', year:'numeric'});
 
-        // دالة التقاط الصورة المشتركة
         async function captureCanvas() {
             await document.fonts.ready;
             const canvasOut = await html2canvas(canvas, { scale: 3, useCORS: true });
             return canvasOut.toDataURL('image/png');
         }
 
-        // زر الحفظ
         document.getElementById('download-btn').addEventListener('click', async (e) => {
             const btn = e.currentTarget;
             const originalHTML = btn.innerHTML;
@@ -475,7 +514,6 @@
             btn.innerHTML = originalHTML;
         });
 
-        // زر المشاركة الجديد
         document.getElementById('share-btn').addEventListener('click', async (e) => {
             const btn = e.currentTarget;
             const originalHTML = btn.innerHTML;
@@ -483,11 +521,9 @@
             try {
                 const imgData = await captureCanvas();
                 
-                // 1. الاتصال بتطبيق الأندرويد لفتح نافذة المشاركة
                 if (window.Android && window.Android.shareImage) {
                     window.Android.shareImage(imgData.split(',')[1]);
                 } 
-                // 2. إذا كان يعمل في متصفح ويب يدعم المشاركة (Web Share API)
                 else {
                     const res = await fetch(imgData);
                     const blob = await res.blob();
